@@ -59,6 +59,26 @@ img {
     height: 84%;
     object-fit: cover;
 }
+/* like icon hover */
+.reel-like-d {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    /* opacity: 0; */
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    pointer-events: none; 
+    border: 2px solid red;
+    background: transparent;
+}
+#reel-like {
+    font-size: 120px;
+    color: red;
+}
+.reel-like-d.show {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
 
 /* NAV */
 .nav {
@@ -70,7 +90,7 @@ img {
     flex-direction: column;
     justify-content: space-between;
     pointer-events: none;
-    z-index: 99;
+    z-index: 999;
 }
 
 .nav i, .profile-d {
@@ -127,12 +147,14 @@ img {
     flex-direction: column;
     gap: 1.4rem;
     text-align: center;
+    z-index: 99;
 }
 .icon-d {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 
 .right-icons i {
     font-size: 35px;
