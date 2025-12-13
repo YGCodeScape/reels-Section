@@ -1,6 +1,4 @@
-/*********************************
-  1. REELS DATA
-*********************************/
+//  REELS DATA
 const reelsData = [
   {
     username: "userName1",
@@ -45,14 +43,15 @@ const reelsData = [
 ];
 
 
-/*********************************
-  2. CREATE REEL
-*********************************/
+//  CREATE REEL
+
 function createReel(data) {
   const reel = document.createElement("div");
   reel.className = "reel";
 
   reel.innerHTML = `
+    <div class ="sound-d"> <i class="ri-volume-up-fill"></i></div>
+    <div class="progress-bar"> <span></span> </div>  
     <video src="${data.videoSrc}" muted loop></video>
 
     <div class="right-icons">
@@ -103,9 +102,7 @@ function createReel(data) {
 }
 
 
-/*********************************
-  3. AUTO PLAY OBSERVER
-*********************************/
+//   AUTO PLAY OBSERVER
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     const video = entry.target.querySelector("video");
@@ -113,82 +110,9 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.7 });
 
-  // LIKE + DOUBLE TAP SYSTEM
-
-function setupLikeSystem(reel) {
-  const video = reel.querySelector("video");
-  const bigHeart = reel.querySelector(".reel-like-d");
-  const likeDiv = reel.querySelector(".like-div");
-  const likeIcon = likeDiv.querySelector("i");
-  const likeCount = likeDiv.querySelector("span");
-
-  let liked = false;
-  let lastTap = 0;
-  let pressTimer = null;
-  let isLongPress = false;
-
-  // Double tap on video
-  video.addEventListener("click", () => {
-    const now = Date.now();
-    if (now - lastTap < 300) {
-      likeReel();
-    }
-    lastTap = now;
-  });
-
-  // Small like button
-  likeDiv.addEventListener("click", () => {
-    toggleLike();
-  });
-
-  function likeReel() {
-    bigHeart.classList.add("show");
-    setTimeout(() => bigHeart.classList.remove("show"), 400);
-    if (!liked) toggleLike();
-  }
-
-  function toggleLike() {
-    let count = parseInt(likeCount.innerText);
-    liked = !liked;
-
-    if (liked) {
-      likeIcon.className = "ri-heart-fill";
-      likeIcon.style.color = "red";
-      likeCount.innerText = count + 1;
-    } else {
-      likeIcon.className = "ri-heart-line";
-      likeIcon.style.color = "#fff";
-      likeCount.innerText = count - 1;
-    }
-  }
-
- //  LONG PRESS TO PAUSE
-  video.addEventListener("mousedown", startPress);
-  video.addEventListener("touchstart", startPress);
-
-  video.addEventListener("mouseup", endPress);
-  video.addEventListener("mouseleave", endPress);
-  video.addEventListener("touchend", endPress);
-
-  function startPress() {
-    isLongPress = false;
-    pressTimer = setTimeout(() => {
-      isLongPress = true;
-      video.pause();
-    }, 350); // press duration
-  }
-function endPress() {
-    clearTimeout(pressTimer);
-    if (isLongPress) {
-      video.play();
-    }
-  }
-}
 
 
-/*********************************
-  5. LOAD REELS ON SCROLL
-*********************************/
+//  LOAD REELS ON SCROLL
 const reelsContainer = document.querySelector(".reels");
 let index = 0;
 
@@ -212,3 +136,102 @@ reelsContainer.addEventListener("scroll", () => {
     loadNextReel();
   }
 });
+
+//   LIKE + DOUBLE TAP + SOUND SYSTEM --------------------------
+//   LIKE + DOUBLE TAP + SOUND SYSTEM --------------------------
+function setupLikeSystem(reel) {
+  const video = reel.querySelector("video");
+  const soundWrap = reel.querySelector(".sound-d");
+  const soundIcon = soundWrap.querySelector("i");
+
+  const bigHeart = reel.querySelector(".reel-like-d");
+  const likeDiv = reel.querySelector(".like-div");
+  const likeIcon = likeDiv.querySelector("i");
+  const likeCount = likeDiv.querySelector("span");
+
+  const progress = reel.querySelector(".progress-bar span");
+
+  let liked = false;
+  let lastTap = 0;
+  let singleTapTimer = null;
+
+  let pressTimer = null;
+  let isLongPress = false;
+
+  video.muted = true; // default muted
+
+  /*********************************
+    TAP SYSTEM (SINGLE = SOUND, DOUBLE = LIKE)
+  *********************************/
+  video.addEventListener("click", () => {
+    const now = Date.now();
+
+    if (now - lastTap < 300) {
+      // DOUBLE TAP ❤️
+      clearTimeout(singleTapTimer);
+      likeReel();
+    } else {
+      // SINGLE TAP 🔊
+      singleTapTimer = setTimeout(toggleSound, 250);
+    }
+
+    lastTap = now;
+  });
+
+  /*********************************
+    SOUND TOGGLE
+  *********************************/
+  function toggleSound() {
+    video.muted = !video.muted;
+
+    soundIcon.className = video.muted
+      ? "ri-volume-mute-fill"
+      : "ri-volume-up-fill";
+
+    soundWrap.classList.add("active");
+
+    setTimeout(() => {
+      soundWrap.classList.remove("active");
+    }, 3000);
+  }
+
+  /*********************************
+    LIKE SYSTEM
+  *********************************/
+  function likeReel() {
+    bigHeart.classList.add("show");
+    setTimeout(() => bigHeart.classList.remove("show"), 400);
+
+    if (!liked) toggleLike();
+  }
+
+  function toggleLike() {
+    let count = parseInt(likeCount.innerText);
+    liked = !liked;
+
+    if (liked) {
+      likeIcon.className = "ri-heart-fill";
+      likeIcon.style.color = "red";
+      likeCount.innerText = count + 1;
+    } else {
+      likeIcon.className = "ri-heart-line";
+      likeIcon.style.color = "#fff";
+      likeCount.innerText = count - 1;
+    }
+  }
+
+  likeDiv.addEventListener("click", toggleLike);
+
+
+  /*********************************
+    VIDEO PROGRESS BAR
+  *********************************/
+  video.addEventListener("timeupdate", () => {
+    const percent = (video.currentTime / video.duration) * 100;
+    progress.style.width = percent + "%";
+  });
+
+  video.addEventListener("ended", () => {
+    progress.style.width = "0%";
+  });
+}

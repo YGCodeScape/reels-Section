@@ -71,12 +71,51 @@ img {
     background: transparent;
 }
 .reel-like-d i {
-    font-size: 120px;
+    font-size: 80px;
     color: red;
 }
 .reel-like-d.show {
     transform: translate(-50%, -50%) rotate(-30deg) translateY(-20px) scale(1.6);
     opacity: 1;
+}
+
+.progress-bar {
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255,255,255,0.2);
+    z-index: 50;
+}
+
+.progress-bar span {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: white;
+    transition: width 0.1s linear;
+}
+.sound-d {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    transform: translate(0%, 0%) scale(0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    background: transparent;
+    z-index: 99;
+}
+.sound-d.active {
+    opacity: 1;
+    transform: scale(1);    
+}
+.sound-d i {
+    font-size: 50px;
+    background-color: #0c0f144d;
+    padding: 20px;
+    border-radius: 50%;
 }
 
 
