@@ -38,7 +38,7 @@ img {
 .home-top-nav {
     display: flex;
     align-items: center;
-    gap: 6.6rem;
+    gap: 5.4rem;
     padding: 0.6rem 1rem;
     background: transparent;
 }
@@ -46,7 +46,9 @@ img {
     font-size: 30px;
 }
 .home-top-nav span {
-    font-size: 1rem;
+    font-size: 1.6rem;
+    font-family: "Pattaya", sans-serif;
+    font-weight: 500;
     line-height: 1;
 }
 .bottom-nav {
