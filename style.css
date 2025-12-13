@@ -147,7 +147,10 @@ img {
 .top-nav i {
     font-size: 32px;
 }
-
+.bottom-nav a {
+    color: #fff;
+    text-decoration: none;
+}
 .head-text {
     display: flex;
     gap: 40px;
