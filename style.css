@@ -32,93 +32,6 @@ img {
     position: relative;
 }
 
-/* SCROLLABLE REELS WRAPPER */
-.reels {
-    height: 100%;
-    width: 100%;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
-}
-
-.reel {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    scroll-snap-align: start;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.reel video {
-    position: absolute;
-    top: 5.50%;
-    left: 0;
-    width: 100%;
-    height: 84%;
-    object-fit: cover;
-}
-/* like icon hover */
-.reel-like-d {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0;
-    transition: transform 0.4s ease, opacity 0.4s ease;
-    pointer-events: none; 
-    background: transparent;
-}
-.reel-like-d i {
-    font-size: 80px;
-    color: red;
-}
-.reel-like-d.show {
-    transform: translate(-50%, -50%) rotate(-30deg) translateY(-20px) scale(1.6);
-    opacity: 1;
-}
-
-.progress-bar {
-    position: absolute;
-    bottom: 10%;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: rgba(255,255,255,0.2);
-    z-index: 50;
-}
-
-.progress-bar span {
-    display: block;
-    height: 100%;
-    width: 0%;
-    background: white;
-    transition: width 0.1s linear;
-}
-.sound-d {
-    position: absolute;
-    top: 40%;
-    left: 40%;
-    transform: translate(0%, 0%) scale(0.5);
-    opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    pointer-events: none;
-    background: transparent;
-    z-index: 99;
-}
-.sound-d.active {
-    opacity: 1;
-    transform: scale(1);    
-}
-.sound-d i {
-    font-size: 25px;
-    background-color: #0c0f148e;
-    padding: 23px;
-    border-radius: 50%;
-}
-
-
 /* NAV */
 .nav {
     position: absolute;
@@ -150,6 +63,9 @@ img {
 .bottom-nav a {
     color: #fff;
     text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    touch-action: manipulation;
 }
 .head-text {
     display: flex;
@@ -293,4 +209,91 @@ img {
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;
+}
+
+
+/* SCROLLABLE REELS WRAPPER */
+.reels {
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
+
+.reel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reel video {
+    position: absolute;
+    top: 5.50%;
+    left: 0;
+    width: 100%;
+    height: 84%;
+    object-fit: cover;
+}
+/* like icon active classes */
+.reel-like-d {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    pointer-events: none; 
+    background: transparent;
+}
+.reel-like-d i {
+    font-size: 80px;
+    color: red;
+}
+.reel-like-d.show {
+    transform: translate(-50%, -50%) rotate(-30deg) translateY(-20px) scale(1.6);
+    opacity: 1;
+}
+
+.progress-bar {
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(255,255,255,0.2);
+    z-index: 50;
+}
+
+.progress-bar span {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: white;
+    transition: width 0.1s linear;
+}
+.sound-d {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    transform: translate(0%, 0%) scale(0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    background: transparent;
+    z-index: 99;
+}
+.sound-d.active {
+    opacity: 1;
+    transform: scale(1);    
+}
+.sound-d i {
+    font-size: 25px;
+    background-color: #0c0f148e;
+    padding: 23px;
+    border-radius: 50%;
 }
