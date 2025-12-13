@@ -44,7 +44,6 @@ const reelsData = [
 
 
 //  CREATE REEL
-
 function createReel(data) {
   const reel = document.createElement("div");
   reel.className = "reel";
@@ -137,7 +136,7 @@ reelsContainer.addEventListener("scroll", () => {
   }
 });
 
-//   LIKE + DOUBLE TAP + SOUND SYSTEM --------------------------
+
 //   LIKE + DOUBLE TAP + SOUND SYSTEM --------------------------
 function setupLikeSystem(reel) {
   const video = reel.querySelector("video");
@@ -160,27 +159,25 @@ function setupLikeSystem(reel) {
 
   video.muted = true; // default muted
 
-  /*********************************
-    TAP SYSTEM (SINGLE = SOUND, DOUBLE = LIKE)
-  *********************************/
+
+//    TAP SYSTEM (SINGLE = SOUND, DOUBLE = LIKE)
   video.addEventListener("click", () => {
     const now = Date.now();
 
     if (now - lastTap < 300) {
-      // DOUBLE TAP ❤️
+      // DOUBLE TAP
       clearTimeout(singleTapTimer);
       likeReel();
     } else {
-      // SINGLE TAP 🔊
+      // SINGLE TAP
       singleTapTimer = setTimeout(toggleSound, 250);
     }
 
     lastTap = now;
   });
 
-  /*********************************
-    SOUND TOGGLE
-  *********************************/
+
+//    SOUND TOGGLE
   function toggleSound() {
     video.muted = !video.muted;
 
@@ -195,9 +192,8 @@ function setupLikeSystem(reel) {
     }, 3000);
   }
 
-  /*********************************
-    LIKE SYSTEM
-  *********************************/
+
+//    LIKE SYSTEM
   function likeReel() {
     bigHeart.classList.add("show");
     setTimeout(() => bigHeart.classList.remove("show"), 400);
@@ -223,9 +219,7 @@ function setupLikeSystem(reel) {
   likeDiv.addEventListener("click", toggleLike);
 
 
-  /*********************************
-    VIDEO PROGRESS BAR
-  *********************************/
+//    VIDEO PROGRESS BAR
   video.addEventListener("timeupdate", () => {
     const percent = (video.currentTime / video.duration) * 100;
     progress.style.width = percent + "%";
