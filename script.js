@@ -1,22 +1,3 @@
-const followBtns = document.querySelectorAll(".follow-btn");
-const likeIcon = document.querySelectorAll("#like-btn")
-
-function followLogic() {
-    followBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-        btn.classList.toggle("active");
-        btn.innerText = btn.classList.contains("active") ? "Followed" : "Follow";
-    });
-});
-
-likeIcon.forEach(like => {
-    like.addEventListener("click",() => {
-        console.log("liked");
-    })
-})
-}
-followLogic()
-
 
 //  REELS DATA
 const reelsData = [
@@ -62,7 +43,6 @@ const reelsData = [
   }
 ];
 
-
 //  CREATE REEL ELEMENT
 function createReel(data) {
   const reelDiv = document.createElement("div");
@@ -72,10 +52,20 @@ function createReel(data) {
       <video src="${data.videoSrc}" muted loop autoplay></video>
 
       <div class="right-icons">
-          <div class="icon-d"><i class="ri-heart-line" id="like-btn"></i><span>${data.likes}</span></div>
-          <div class="icon-d"><i class="ri-chat-1-line"></i><span>${data.comments}</span></div>
-          <div class="icon-d"><i class="ri-send-plane-fill"></i><span>${data.shares}</span></div>
-          <div class="icon-d"><i class="ri-more-2-line"></i></div>
+          <div class="icon-d">
+              <i class="ri-heart-line" id="like-btn"></i>
+              <span>${data.likes}</span>
+          </div>
+          <div class="icon-d">
+              <i class="ri-chat-1-line"></i>
+              <span>${data.comments}</span>
+          </div>
+          <div class="icon-d">
+              <i class="ri-send-plane-fill"></i>
+              <span>${data.shares}</span>
+          </div>
+          <div class="icon-d">
+              <i class="ri-more-2-line"></i></div>
           <div class="music-box"><img src="${data.musicImg}" /></div>
       </div>
 
@@ -100,7 +90,6 @@ function createReel(data) {
 
   return reelDiv;
 }
-
 
 //  AUTO-PLAY OBSERVER
 
@@ -145,8 +134,7 @@ function loadNextReel() {
 }
 
 
-
-// //  6. SCROLL TO LOAD MORE
+// SCROLL TO LOAD MORE
 
 reelsContainer.addEventListener("scroll", () => {
   const scrollPos = reelsContainer.scrollTop + reelsContainer.clientHeight;
