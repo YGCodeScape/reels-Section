@@ -23,6 +23,7 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover; 
+    border-radius: 50%;
 }
 
 .main {
@@ -46,9 +47,9 @@ img {
     font-size: 30px;
 }
 .home-top-nav span {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-family: "Pattaya", sans-serif;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1;
 }
 .bottom-nav {
@@ -90,9 +91,54 @@ img {
     overflow: hidden;
 }
 
-.box {
-    position: relative;
+/* story section */
+.head {
     width: 100%;
-    height: 600vh;
-    background-color: #4582ec3d;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+}
+.head::-webkit-scrollbar {
+    display: none;
+}
+.head div:nth-child(1) {
+    margin-left: 2px;
+}
+.story {
+    flex: 0 0 auto;
+    width: 90px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+    scroll-snap-align: start;
+    /* margin-right: 0.6rem; */
+}
+.story-ring {
+    position: absolute;
+    inset: -7px;
+    border-radius: 50%;
+    border: 3px solid red;
+}
+.profile-img {
+    position: relative;
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+}
+.story span {
+    font-size: 13px;
+    margin-top: 6px;
+    max-width: 80px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
