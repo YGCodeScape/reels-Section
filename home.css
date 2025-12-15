@@ -235,8 +235,9 @@ i, .profile-d {
     width: 100%;
     display: flex;
     align-items: center;
-    margin-bottom: 17px;
-    border: 2px solid red;
+    justify-content: space-between;
+    margin: 0 0 17px 0;
+    padding: 0;
 }
 .story-bottom input {
     width: 77%;
@@ -246,4 +247,17 @@ i, .profile-d {
     border-radius: 50px;
     padding-left: 12px;
     font-size: 14px;
+    color: white;
+}
+.story-bottom input::placeholder {
+    color: #fff;
+    outline: none;
+
+}
+.story-bottom div {
+    display: flex;
+    gap: 0.3rem;
+}
+.story-bottom i {
+    font-size: 30px;
 }
