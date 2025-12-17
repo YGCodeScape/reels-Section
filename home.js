@@ -42,29 +42,16 @@ var storyImg = document.querySelector(".story-img")
 var storyUser = document.querySelector(".story-username")
 var profileImg = document.querySelector(".profile-img")
 
-var clutter = ''
-
-storyData.forEach(function(elem, index) {
-    clutter += `
-         <div class="story">
-            <div class="profile-img">
-                <div class="story-ring"></div>
-                <img id ="${index}" src="${elem.profilePic}" alt="">
-            </div>
-            <span>${elem.userName}</span>
+function renderStories() {
+    headDiv.innerHTML = storyData.map((story, index) => `
+         <div class="story" data-index="${index}">
+             <div class="profile-img">
+                 <div class="story-ring"></div>
+                 <img src="${story.profilePic}" alt="">
+             </div>
+           <span>${story.userName}</span>
          </div>
-     `
-})
-
-headDiv.innerHTML = clutter;
-
-headDiv.addEventListener("click", function(para) {
-    fullStory.style.display = 'flex';
-    storyImg.setAttribute("src", `${storyData[para.target.id].story}`)
-    storyUser.innerText = `${storyData[para.target.id].userName}`
-    profileImg.setAttribute("src", `${storyData[para.target.id].profilePic}`)
-
-    setTimeout(function() {
-        fullStory.style.display = 'none'
-    }, 3000)
-})
+    `)
+    .join("");
+}
+renderStories();
