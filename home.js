@@ -36,11 +36,11 @@ var storyData = [
     },
 ]
 
-var headDiv = document.querySelector('.head');
-var fullStory = document.querySelector(".full-screen-story")
-var storyImg = document.querySelector(".story-img")
-var storyUser = document.querySelector(".story-username")
-var profileImg = document.querySelector(".profile-img")
+const headDiv = document.querySelector('.head');
+const fullStory = document.querySelector(".full-screen-story")
+const storyImg = document.querySelector(".story-img")
+const storyUser = document.querySelector(".story-username")
+const profileImg = document.querySelector(".profile-img")
 
 function renderStories() {
     headDiv.innerHTML = storyData.map((story, index) => `
@@ -55,3 +55,18 @@ function renderStories() {
     .join("");
 }
 renderStories();
+
+headDiv.addEventListener("click", (e) => {
+    const story = e.target.closest(".story");
+    if (!story) return;
+
+    const index = story.dataset.index;
+    openStory(index);
+})
+
+function openStory(index) {
+    fullStory.classList.add("active");
+    storyImg.src = storyData[index].story;
+    storyUser.innerText = storyData[index].userName;
+    profileImg.src = storyData[index].profilePic;
+}

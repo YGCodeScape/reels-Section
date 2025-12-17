@@ -173,6 +173,9 @@ i, .profile-d {
     padding: 10px 10px 20px 10px;
     background-color: var(--body-color);
 }
+.full-screen-story.active {
+    display: flex;
+}
 .full-screen-story img {
     position: absolute;
     inset: 0;
