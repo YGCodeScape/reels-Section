@@ -27,7 +27,7 @@ var storyData = [
     {
         profilePic: "https://i.pinimg.com/736x/cf/e9/b9/cfe9b9654bda36a6e91c23e4858075e8.jpg",
         story : "https://i.pinimg.com/736x/02/9e/55/029e559eb4cc68407dc4c975947d6235.jpg",
-        userName : "hemlata02"
+        userName : "emily_will2"
     },
     {
         profilePic: "https://i.pinimg.com/736x/4c/f1/07/4cf107ea24550ceffba739c1be657132.jpg",
@@ -62,11 +62,45 @@ headDiv.addEventListener("click", (e) => {
 
     const index = story.dataset.index;
     openStory(index);
+
 })
 
 function openStory(index) {
+    const story = storyData[index];
+
     fullStory.classList.add("active");
     storyImg.src = storyData[index].story;
     storyUser.innerText = storyData[index].userName;
     profileImg.src = storyData[index].profilePic;
+
+    startStoryTimer();
+}
+
+
+const STORY_DURATION = 4000;
+let storyTimer = null;
+let progressTimer = null;
+
+// START STORY TIMERS
+function startStoryTimer() {
+    const progress = document.querySelector(".story-bar span");
+    let progressWidth = 0;
+
+    progress.style.width = "0%";
+
+    // Progress animation
+    progressTimer = setInterval(() => {
+        progressWidth += 100 / (STORY_DURATION / 100);
+        progress.style.width = progressWidth + "%";
+    }, 100);
+
+    storyTimer = setTimeout(closeStory, STORY_DURATION);
+}
+// close story
+function closeStory() {
+    clearTimeout(progressTimer);
+    clearInterval(storyTimer);
+
+
+    fullStory.classList.remove("active");
 }
