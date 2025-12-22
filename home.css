@@ -104,7 +104,6 @@ i, .profile-d {
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
-    border: 2px solid red;
 }
 .head::-webkit-scrollbar {
     display: none;
@@ -143,6 +142,9 @@ i, .profile-d {
     background: var(--body-color);
     border-radius: 50%;
     z-index: 1;
+}
+.story-ring.seen {
+  background: #555;
 }
 .profile-img {
     position: relative;
@@ -185,6 +187,7 @@ i, .profile-d {
     border-radius: 5px;
     object-fit: cover;
     object-position: top;
+    pointer-events: none;
 }
 .story-bar {
     position: absolute;
@@ -253,7 +256,6 @@ i, .profile-d {
 .story-bottom input::placeholder {
     color: #fff;
     outline: none;
-
 }
 .story-bottom div {
     display: flex;
@@ -264,7 +266,7 @@ i, .profile-d {
 }
 
 
-@media (min-width: 800px)   {
+@media screen and (min-width: 800px)   {
     body {
         display: flex;
         flex-direction: column;
