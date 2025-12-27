@@ -78,7 +78,7 @@ headDiv.addEventListener("click", (e) => {
     openStory(index);
 
 })
-
+// ------------------------------------------
 function openStory(index) {
     storyData[index].seen = true;
     renderStories();
