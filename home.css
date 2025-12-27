@@ -264,16 +264,3 @@ i, .profile-d {
 .story-bottom i {
     font-size: 30px;
 }
-
-
-@media screen and (min-width: 800px)   {
-    body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .head {
-        border: 2px solid red;
-        justify-content: center;
-    }
-}

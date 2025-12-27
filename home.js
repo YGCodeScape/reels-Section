@@ -63,7 +63,7 @@ function renderStories() {
                  <div class="story-ring ${story.seen ? "seen": ""}"></div>
                  <img src="${story.profilePic}" alt="user-profile">
              </div>
-           <span>${story.userName}</span>
+            <span>${story.userName}</span>
          </div>
     `)
     .join("");
